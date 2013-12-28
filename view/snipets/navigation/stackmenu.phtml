@@ -1,0 +1,21 @@
+<?php
+/**
+ * maxDepthを0にすると、onlyActiveBranchがなぜか適用されない。
+ * 1にすると、現在対象にしているカテゴリのメニューだけを表示できる。それでいい。
+ */
+$options = array(
+    'maxDepth' => 2,
+    'onlyActiveBranch' => true ,
+    //'renderParents' => true,
+    //nav-indent
+    'ulClass' => array('nav nav-pills nav-indent nav-stacked', 'nav nav-tabs nav-indent nav-stacked', 'nav nav-tabs nav-indent nav-stacked'),
+);
+if (isset($container)) {
+    echo $this->navigation()->menu()->renderMenu($container, $options);
+}
+
+if (isset($containers)) {
+    foreach ($containers as $container) {
+        echo $this->navigation()->menu()->renderMenu($container,  $options);
+    }
+}

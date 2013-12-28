@@ -1,0 +1,5 @@
+!menu/.placeholder
+!pages/.placeholder
+menu/*
+pages/*
+!.gitignore

@@ -1,0 +1,47 @@
+<?php 
+if (!isset($charset)) {
+    $charset = 'utf-8';
+}
+$this->headMeta()->setCharset($charset);
+if (!isset($viewPort)) {
+    $viewPort = "width=device-width, initial-scale=1.0, maximum-scale=1";
+}
+$this->headMeta()->appendName('viewport', $viewPort);
+
+if (isset($description)) {
+    $this->headMeta()
+            ->appendName('description', $description);
+}
+if (isset($keywords)) {
+    $this->headMeta()->appendName('keywords', $keywords);
+}
+if (isset($author)) {
+    $this->headMeta()->appendName('author', $author);
+}
+//for fb properties
+// @see Open Graph Protocol
+// set namespace for html tag
+if (isset($pageId)) {
+    $this->headMeta()->setProperty('fb:page_id', $pageId);
+}
+if (isset($ogpImage)) {
+    $this->headMeta()->setProperty('og:image', $ogpImage);
+}
+if (isset($ogpTitle)) {
+    $this->headMeta()->setProperty('og:title', $ogpTitle);
+} elseif (isset($title)) {
+    $this->headMeta()->setProperty('og:title', $title);
+}
+if (isset($ogpType)) {
+    $this->headMeta()->setProperty('og:type', $ogpType);
+}
+//for google like search engines
+if (isset($itemName)) {
+    $this->headMeta()->setItemprop('name', $itemName);
+}
+if (isset($itemDescription)) {
+    $this->headMeta()->setItemprop('description', $itemDescription);
+}
+if (isset($itemImage)) {
+    $this->headMeta()->setItemprop('image', $itemImage);
+}

@@ -1,0 +1,18 @@
+<?php
+$previewValue = $element->getPreviewValue();
+foreach ($previewValue as $entry) {
+    $params = $entry['params'];
+    if (!isset($params['thumbnail'])) {
+        $params['thumbnail'] = 'preview';
+    }
+    $url = $this->url($entry['route'], $params);
+?>
+<image src="<?php echo $url ?>">
+<br>
+<?php
+}
+?>
+
+画像を入れ替える場合はこちら
+<?php
+echo $input;

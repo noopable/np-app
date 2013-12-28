@@ -1,0 +1,13 @@
+<?php
+if (!isset($form)) {
+    echo "フォームがありません。";
+    return;
+}
+
+$rf = new \Flower\Form\RecursiveForm($form);
+$strategy = new \Flower\Form\View\RenderStrategyTwPaneWithButtonGroup;
+if (true === $form->getOption('show_values')) {
+    $strategy->setShowValues(true);
+}
+$rfr = new \Flower\Form\View\RecursiveFormRenderer($rf, $strategy, $this);
+echo $rfr;

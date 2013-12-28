@@ -1,0 +1,22 @@
+<?php
+if (!isset($messages)) {
+    return;
+}
+
+foreach($messages as $message) {
+    $mArray = explode(':', $message, 2);
+    if (count($mArray) == 2) {
+        list($title, $body) = $mArray;
+    }
+    else {
+        $title = '';
+        $body = array_shift($mArray);
+    }
+echo <<< TOD
+<div class="alert fade in">
+  <button data-dismiss="alert" class="close" type="button">×</button>
+  <strong>{$title}</strong>{$body}</div>
+</body>
+TOD;
+}
+

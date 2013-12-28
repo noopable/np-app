@@ -1,0 +1,10 @@
+<?php
+if (!isset($form)) {
+    echo "フォームがありません。";
+    return;
+}
+
+$rf = new \Flower\Form\RecursiveForm($form);
+$rfr = new \Flower\Form\View\RecursiveFormRenderer($rf, new \Flower\Form\View\RenderStrategyTwPane, $this);
+
+echo $rfr;

@@ -1,0 +1,34 @@
+<?php
+//第1階層はnav
+//第2階層は、dropdown
+//第3階層は表示しない
+//$containerはRecursiveIteratorIteratorである。
+if (isset($container)) {
+    $dropdowns = array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown');
+    foreach ($container as $page) {
+        if ($page->hasPages()) {
+            $page->setLabel($page->getLabel() . ' <b class="caret"></b>');
+            if (isset($page->attributes)) {
+                $attributes = array_merge($page->attributes, $dropdowns);
+            }
+            else {
+                $attributes = $dropdowns;
+            }
+            $page->attributes = $attributes;
+
+            $class = $page->getClass();
+            if (! $class) {
+                $class = 'dropdown';
+            } elseif (is_string($class)) {
+                if (false === strpos($class, 'dropdown')) {
+                    $class .= ' dropdown';
+                }
+            }
+            $page->setClass($class);
+        }
+    }
+
+    echo $this->npMenu()->renderMenu($container, array('escapeLabels' => false, 'ulClass' => array('nav nav-tabs', 'dropdown-menu'), 'addClassToListItem' => true));
+    //echo $this->navigation()->twMenuDropdown()->renderMenu($container, array('escapeLabels' => false, 'ulClass' => array('nav nav-tabs', 'dropdown-menu'), 'addClassToListItem' => true));
+}
+

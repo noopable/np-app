@@ -1,0 +1,63 @@
+<?php
+//ここで、$li = new Tag; とかやってもいいのかもしれない。
+//タグとストラクチャを定義して流す。定義はインジェクションしてもかまわない。
+$li['<'] = "<li";
+if (isset($li_class)) {
+    $li['<'] .= " class=\"$li_class\"";
+}
+if (isset($li_id)) {
+    $li['<'] .= " id=\"$li_id\"";
+}
+
+$li['<'] .= ">";
+$li['>'] = "</li>";
+
+// prepare a tag
+if (isset($route)) {
+    $a['<'] = "<a";
+    if (isset($route['name']) && strlen($route['name']) > 0) {
+        $href = $this->url(@$route['name'] ?: null, @$route['params'] ?: array());
+    }
+    else {
+        $href = "#";
+    }
+
+    $a['<'] .= " href=\"$href\"";
+    if (isset($a_class)) {
+        $a['<'] .= " class=\"$a_class\"";
+    }
+    if (isset($a_id)) {
+        $a['<'] .= " id=\"$a_id\"";
+    }
+
+    if (isset($a_onclick)) {
+        $onclick = $this->escapeHtmlAttr($a_onclick);
+        $a['<'] .= " onclick=\"$onclick\"";
+    }
+    $a['<'] .= ">";
+
+    $a['>'] = "</a>";
+}
+else {
+    $a['<'] = $a['>'] = '';
+}
+
+
+if (isset($icon)) {
+    $i = "<i class=\"$icon\"></i>";
+}
+else {
+    $i = "";
+}
+if (!isset($title)) {
+    $title = "<!-- title is not set-->";
+}
+
+$divider = ' <span class="divider">/</span>';
+if (!isset($li_class) || false === strpos($li_class, 'active')) {
+    echo $li['<'],$a['<'], $i, $title, $a['>'], $divider, $li['>'], PHP_EOL;
+}
+else {
+    echo $li['<'], $i, $title, $divider, $li['>'], PHP_EOL;
+}
+

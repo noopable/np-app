@@ -1,0 +1,33 @@
+{
+    "name": "noopable/np-app",
+    "description": "Noopable's base application module",
+    "type": "np-local-module",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "zf2", "noopable"
+    ],
+    "authors": [
+        {
+            "name": "Tomoaki Kosugi",
+            "email": "kipspro@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com/noopable/np-composer-installer.git"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.10"
+    },
+    "autoload": {
+        "psr-0": {
+            "NpApp\\": "src/",
+            "NpAppTest\\": "tests/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}

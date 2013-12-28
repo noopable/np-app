@@ -1,0 +1,47 @@
+<?php echo $this->render("snipets/ieconditional_html_open_tag.phtml"), PHP_EOL; ?>
+<head>
+<?php 
+echo $this->render("snipets/html5_compat_icon_hack"), PHP_EOL; 
+$this->headLink(array(
+    'rel' => 'shortcut icon',
+    'type' => 'image/vnd.microsoft.icon',
+    'href' => $this->basePath() . '/img/favicon.ico',
+    ));
+//don't echo,only meta detection 
+$this->render('snipets/detect-meta');
+if (!isset($headIndent)) {
+    $headIndent = 4;
+}
+echo $this->headMeta()->toString($headIndent), PHP_EOL;
+echo $this->headTitle()->toString($headIndent), PHP_EOL; 
+echo $this->headScript()->toString($headIndent), PHP_EOL; 
+echo $this->headLink()->toString($headIndent), PHP_EOL;
+?>
+</head>
+<body<?php 
+if (isset($ngBody)) echo ' ' . $ngBody;
+if (isset($name)) echo " class=\"$name\"";
+?>>
+<?php //isset($navbar) and print($navbar);?>
+<?php 
+/**
+ * Content pane
+ */
+echo $this->pane();
+?>
+<?php
+/**
+ * in body scripts for UX
+ */
+if (!isset($ignore_js)) {
+    echo '<!-- Scripts -->' , PHP_EOL;
+    echo $this->render('snipets/jQuery') , PHP_EOL;
+    echo $this->render('snipets/ie6') , PHP_EOL;
+    echo $this->bodyScript() , PHP_EOL;
+    echo $this->inlineScript() , PHP_EOL;
+    echo '<!-- /Scripts -->' , PHP_EOL;
+}
+echo $this->render('snipets/google-analytics-modernizr'), PHP_EOL;
+?>
+</body>
+</html>
