@@ -55,7 +55,6 @@ class Bootstrap
         );
 
         $config = ArrayUtils::merge($baseConfig, $testConfig);
-        
         $serviceManager = new ServiceManager(new ServiceManagerConfig());
         $serviceManager->setService('ApplicationConfig', $config);
         $serviceManager->get('ModuleManager')->loadModules();
@@ -77,6 +76,11 @@ class Bootstrap
             error_log('composer loaded');
         }
 
+        if (false === $vendorPath) {
+            // */noopable/__NAMESPACE__/tests
+            $vendorPath = dirname(dirname(dirname(__DIR__)));
+        }
+        
         if (! class_exists('Zend\Loader\StandardAutoloader')) {
             //try to load ZF2 autoload class
             if (! $zf2Path = getenv('ZF2_PATH')) {
@@ -101,11 +105,13 @@ class Bootstrap
                 require_once $zf2Path . '/Zend/Loader/AutoloaderFactory.php';
             }
             
-            if (! class_exists('Zend\Loader\StandardAutoloader')) {
-                throw new RuntimeException('faild to load zf2 StandardAutoloader from ' . $zf2Path );
+            if (! class_exists('Zend\Loader\AutoloaderFactory')) {
+                throw new RuntimeException('faild to load zf2 AutoloaderFactory from ' . $zf2Path );
             }
 
         }
+        //for testing only but if this was installed with git submodule .hmm...
+        require_once(realpath(dirname(__DIR__) . '/Module.php'));
         
         AutoloaderFactory::factory(array(
             'Zend\Loader\StandardAutoloader' => array(
@@ -115,8 +121,6 @@ class Bootstrap
                 ),
             ),
         ));
-        
-
     }
 
     protected static function findParentPath($path)
