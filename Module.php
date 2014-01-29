@@ -44,12 +44,8 @@ class Module
     public function getConfig()
     {
         $config =  include __DIR__ . '/config/module.config.php';
+        $config['router']['routes'] = include __DIR__ . '/config/module.routes.php';
         return $config;
-    }
-
-    public function getRouterConfig()
-    {
-        return include __DIR__ . '/config/module.routes.php';
     }
 
     public function getServiceConfig()
