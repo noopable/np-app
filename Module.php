@@ -1,4 +1,12 @@
 <?php
+
+/**
+ *
+ *
+ * @copyright Copyright (c) 2013-2014 KipsProduction (http://www.kips.gr.jp)
+ * @license   http://www.kips.gr.jp/newbsd/LICENSE.txt New BSD License
+ */
+
 namespace NpApp;
 
 use Zend\Mvc\MvcEvent;
@@ -36,8 +44,12 @@ class Module
     public function getConfig()
     {
         $config =  include __DIR__ . '/config/module.config.php';
-        $config['router'] = include __DIR__ . '/config/router/routes.php';
         return $config;
+    }
+
+    public function getRouterConfig()
+    {
+        return include __DIR__ . '/config/module.routes.php';
     }
 
     public function getServiceConfig()

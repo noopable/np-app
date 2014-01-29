@@ -7,14 +7,14 @@
  * @license   http://www.kips.gr.jp/newbsd/LICENSE.txt New BSD License
  */
 
-namespace NpApp\Exception;
+namespace NpApp\ServiceLayer;
 
 /**
- * Description of RuntimeException
+ * Description of ResourceRegistration
  *
  * @author tomoaki
  */
-class RuntimeException extends \RuntimeException implements ExceptionInterface
+class DocumentRevision extends AbstractService
 {
 
 }

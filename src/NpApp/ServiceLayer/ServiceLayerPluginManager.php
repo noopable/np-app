@@ -7,16 +7,16 @@
  * @license   http://www.kips.gr.jp/newbsd/LICENSE.txt New BSD License
  */
 
-namespace NpApp\Service;
+namespace NpApp\ServiceLayer;
 
-use Flower\Model\Service\RepositoryPluginManager;
+use Flower\ServiceLayer\ServiceLayerPluginManager as AbstractPluginManager;
 
 /**
- * Description of RepositoryPluginManager
+ * Description of ResourcePluginManager
  *
  * @author tomoaki
  */
-class RepositoryPluginManager extends RepositoryPluginManager
+class ServiceLayerPluginManager extends AbstractPluginManager
 {
 
     /**
@@ -26,6 +26,6 @@ class RepositoryPluginManager extends RepositoryPluginManager
      *
      * @var string
      */
-    protected $pluginNameSpace = 'NpApp\Model\Repository';
+    protected $pluginNameSpace = 'NpApp\ServiceLayer';
 
 }

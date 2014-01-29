@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ルーティングでコントローラーが指定されていない場合にこのコントローラー名はnot-foundになる。
  * NotFoundControllerでいいと思うが、not-foundでalias指定するべきかどうかは今のところ不明
@@ -10,12 +11,11 @@
 namespace NpApp\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-//use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-
 
 class ErrorController extends AbstractActionController
 {
+
     public function notFoundAction()
     {
         //$events  = $this->getApplication()->getEventManager();

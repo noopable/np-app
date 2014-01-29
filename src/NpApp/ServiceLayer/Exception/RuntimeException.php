@@ -7,7 +7,7 @@
  * @license   http://www.kips.gr.jp/newbsd/LICENSE.txt New BSD License
  */
 
-namespace NpApp\Exception;
+namespace NpApp\ServiceLayer\Exception;
 
 /**
  * Description of RuntimeException
