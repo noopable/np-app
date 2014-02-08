@@ -3,56 +3,42 @@ return array(
     'controllers' => array(
         'invokables' => include __DIR__ . '/invokables.php',
     ),
-    'service_manager' => array( 
+    'service_manager' => array(
         //Module.phpの getServiceConfigでも実装できる。ハードコートしたくなければこちらで。
         'factories' => array(
             'NpApp_Repositories'
                 => 'NpApp\Service\RepositoryServiceFactory',
             'smtp_transport'  => 'Flower\Mail\SmtpTransportFactory',
-            'NpApp_Menu_Config' => 'NpApp\Service\MenuFilesFactory'
+            'PaneFileListener' => 'Flower\View\Pane\Service\ConfigFileListenerFactory',
+            'PaneCacheListener' => 'Flower\View\Pane\Service\PaneCacheListenerFactory',
+            'PaneRenderCacheListener' => 'Flower\View\Pane\Service\RenderCacheListenerFactory',
         ),
         'shared' => array(
         ),
     ),
+    'view_helpers' => array(
+        'factories' => array(
+            'NpPaneManager' => 'Flower\View\Pane\Service\ManagerFactory',
+        ),
+    ),
+    'flower_pane_manager' => include 'flower_pane_manager.php',
+    'pane_config_file_listener' => include 'pane_config_file_options.php',
+    'pane_cache_listener' => include 'pane_cache_options.php',
+    'render_cache_listener' => include 'pane_render_cache_options.php',
     'di' => array(
         //'definition' => include __DIR__ . '/definition.php',
         'instance' => include __DIR__ . '/instance.models.php',
-    ),
-    'menu_files' => array(
-        'spec_class' => 'Flower\File\Spec\TreeArrayMerge',
-        'spec_options' => array(
-        ),
-        'resolve_spec_class' => 'Flower\File\Spec\Resolver\Tree',
-        'resolve_spec_options' => array(
-            'map' => [],
-            'extensions' => ['menu'=>'menu.php'],
-            'path_stack' => array(
-                'flower' => __DIR__ . '/pages',
-            ),
-        ),
-        'cache_spec_options' => array(
-            /*'cache_path' => __DIR__ . '/../data/cache/menu',*/
-            'cache_enabled' => false,
-        ),
     ),
     'translator' => array(
         'locale' => 'ja_JP',
         'translation_files' => array(
             array(
                 'type' => 'phpArray',
-                'filename' => __DIR__ . '/../../../vendor/zendframework/zendframework/resources/languages/ja/Zend_Validate.php',
+                'filename' => __DIR__ . '/../../vendor/zendframework/zendframework/resources/languages/ja/Zend_Validate.php',
                 'text_domain' => 'default',
                 'locale' => 'ja_JP',
             ),
         ),
-        /*
-        'translation_file_patterns' => array(
-            array(
-                'type'     => 'gettext',
-                'base_dir' => __DIR__ . '/../../Application/language',
-                'pattern'  => '%s.mo',
-            ),
-        ),*/
     ),
     'view_manager' => array(
         'template_path_stack' => array(
@@ -85,19 +71,4 @@ return array(
         'preview-route' => 'admin/file',
         'preview-params' => array(),
     ),
-    'flower_pane' => Array (
-        'builder_options' => array(
-            'size_to_class_function' => function($size) { 
-                $size = intval($size);
-                if ($size > 20) {
-                    return '';
-                }
-                $sizeList = array('zero', 'one', 'two', 'three', 'four', 'five',
-                    'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve',
-                    'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen',
-                    'eightteen', 'nineteen', 'twenty');
-                return $sizeList[$size] . ' columns';
-            },
-        ),
-    )
 );

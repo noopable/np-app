@@ -58,6 +58,7 @@ class Bootstrap
         $serviceManager = new ServiceManager(new ServiceManagerConfig());
         $serviceManager->setService('ApplicationConfig', $config);
         $serviceManager->get('ModuleManager')->loadModules();
+        $serviceManager->get('Application')->bootstrap();
         static::$serviceManager = $serviceManager;
     }
 
