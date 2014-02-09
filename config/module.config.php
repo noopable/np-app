@@ -9,6 +9,7 @@ return array(
             'NpApp_Repositories'
                 => 'NpApp\Service\RepositoryServiceFactory',
             'smtp_transport'  => 'Flower\Mail\SmtpTransportFactory',
+            'PaneFileService' => 'Flower\View\Pane\Service\ConfigFileServiceFactory',
             'PaneFileListener' => 'Flower\View\Pane\Service\ConfigFileListenerFactory',
             'PaneCacheListener' => 'Flower\View\Pane\Service\PaneCacheListenerFactory',
             'PaneRenderCacheListener' => 'Flower\View\Pane\Service\RenderCacheListenerFactory',
@@ -22,7 +23,10 @@ return array(
         ),
     ),
     'flower_pane_manager' => include 'flower_pane_manager.php',
-    'pane_config_file_listener' => include 'pane_config_file_options.php',
+    'pane_config_file_listener' => array(
+        'file_service' => 'PaneFileService',
+    ),
+    'pane_config_file' => include 'pane_config_file_options.php',
     'pane_cache_listener' => include 'pane_cache_options.php',
     'render_cache_listener' => include 'pane_render_cache_options.php',
     'di' => array(
