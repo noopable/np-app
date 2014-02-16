@@ -24,11 +24,8 @@ class ManagerFactoryIntegrationTest extends \PHPUnit_Framework_TestCase
     {
         $this->serviceLocator = Bootstrap::getServiceManager();
         $this->serviceLocator->get('Application')->bootstrap();
-        $this->helperManager = $this->serviceLocator->get('ViewHelperManager');
-        $this->view = new PhpRenderer;
-        $this->view->setHelperPluginManager($this->helperManager);
+        $this->view = $this->serviceLocator->get('ViewManager')->getRenderer();
         $this->manager = $this->view->plugin('npPaneManager');
-        $this->getPaneCacheStorage();
     }
 
     /**
@@ -44,26 +41,8 @@ class ManagerFactoryIntegrationTest extends \PHPUnit_Framework_TestCase
                 $fileListener->getFileService()->refresh();
             }
         }
-    }
-
-    protected function getPaneCacheStorage()
-    {
-        if (isset($this->paneCacheStorage)) {
-            return $this->paneCacheStorage;
-        }
-        $listener = $this->serviceLocator->get('PaneCacheListener');
-        $this->paneCacheStorage = $listener->getStorage();
-        return $this->paneCacheStorage;
-    }
-
-    protected function getRenderCacheStorage()
-    {
-        if (isset($this->renderCacheStorage)) {
-            return $this->renderCacheStorage;
-        }
-        $listener = $this->serviceLocator->get('PaneRenderCacheListener');
-        $this->renderCacheStorage = $listener->getStorage();
-        return $this->renderCacheStorage;
+        $this->manager->refresh('foo');
+        $this->manager->refresh('bar');
     }
 
     public function testCanGetPaneManager()
@@ -82,9 +61,6 @@ class ManagerFactoryIntegrationTest extends \PHPUnit_Framework_TestCase
 <!-- end Renderer -->
 ';
         $this->assertEquals(str_replace("\r\n", "\n", $expected), $res);
-        //private teardown
-        $this->getPaneCacheStorage()->removeItem('bar');
-        $this->getRenderCacheStorage()->removeItem('bar');
     }
 
     public function testCanGetPaneInFile()
@@ -98,10 +74,6 @@ class ManagerFactoryIntegrationTest extends \PHPUnit_Framework_TestCase
 <!-- end Renderer -->
 ';
         $this->assertEquals(str_replace("\r\n", "\n", $expected), $res);
-
-        //private teardown
-        $this->getPaneCacheStorage()->removeItem('foo');
-        $this->getRenderCacheStorage()->removeItem('foo');
     }
 
     public function testEventListnerIsAttached()
