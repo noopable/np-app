@@ -10,6 +10,7 @@
 namespace NpApp;
 
 use Zend\Mvc\MvcEvent;
+use Zend\Stdlib\ArrayUtils;
 
 class Module
 {
@@ -44,7 +45,9 @@ class Module
     public function getConfig()
     {
         $config =  include __DIR__ . '/config/module.config.php';
-        $config['router']['routes'] = include __DIR__ . '/config/module.routes.php';
+        foreach (glob(__DIR__ . '/config/module.*.php') as $file) {
+            $config = ArrayUtils::merge($config, include($file));
+        }
         return $config;
     }
 

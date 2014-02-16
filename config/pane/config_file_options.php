@@ -15,10 +15,10 @@ return array(
     'resolve_spec_options' => array(
         'map' => [],
         'path_stack' => array(
-            'npapp' => __DIR__ . '/../data/panes',
+            'npapp' => __DIR__ . '/../../data/panes',
         ),
     ),
     'cache_spec_options' => array(
-        'cache_path' => __DIR__ . '/../data/cache/panes/file',
+        'cache_path' => __DIR__ . '/../../data/cache/panes/file',
     ),
 );

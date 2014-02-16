@@ -1,47 +1,13 @@
 <?php
 return array(
-    'controllers' => array(
-        'invokables' => include __DIR__ . '/invokables.php',
-    ),
     'service_manager' => array(
         //Module.phpの getServiceConfigでも実装できる。ハードコートしたくなければこちらで。
         'factories' => array(
             'NpApp_Repositories'
                 => 'NpApp\Service\RepositoryServiceFactory',
             'smtp_transport'  => 'Flower\Mail\SmtpTransportFactory',
-            'PaneFileService' => 'Flower\View\Pane\Service\ConfigFileServiceFactory',
-            'PaneFileListener' => 'Flower\View\Pane\Service\ConfigFileListenerFactory',
-            'PaneCacheListener' => 'Flower\View\Pane\Service\PaneCacheListenerFactory',
-            'PaneRenderCacheListener' => 'Flower\View\Pane\Service\RenderCacheListenerFactory',
         ),
         'shared' => array(
-        ),
-    ),
-    'view_helpers' => array(
-        'factories' => array(
-            'NpPaneManager' => 'Flower\View\Pane\Service\ManagerFactory',
-        ),
-    ),
-    'flower_pane_manager' => include 'flower_pane_manager.php',
-    'pane_config_file_listener' => array(
-        'file_service' => 'PaneFileService',
-    ),
-    'pane_config_file' => include 'pane_config_file_options.php',
-    'pane_cache_listener' => include 'pane_cache_options.php',
-    'render_cache_listener' => include 'pane_render_cache_options.php',
-    'di' => array(
-        //'definition' => include __DIR__ . '/definition.php',
-        'instance' => include __DIR__ . '/instance.models.php',
-    ),
-    'translator' => array(
-        'locale' => 'ja_JP',
-        'translation_files' => array(
-            array(
-                'type' => 'phpArray',
-                'filename' => __DIR__ . '/../../vendor/zendframework/zendframework/resources/languages/ja/Zend_Validate.php',
-                'text_domain' => 'default',
-                'locale' => 'ja_JP',
-            ),
         ),
     ),
     'view_manager' => array(
@@ -74,5 +40,16 @@ return array(
     'fprg' => array(
         'preview-route' => 'admin/file',
         'preview-params' => array(),
+    ),
+    'translator' => array(
+        'locale' => 'ja_JP',
+        'translation_files' => array(
+            array(
+                'type' => 'phpArray',
+                'filename' => __DIR__ . '/../../vendor/zendframework/zendframework/resources/languages/ja/Zend_Validate.php',
+                'text_domain' => 'default',
+                'locale' => 'ja_JP',
+            ),
+        ),
     ),
 );

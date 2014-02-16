@@ -13,7 +13,7 @@ return array(
             'name'    => 'filesystem',
             'options' => array(
                 'namespace' => 'pane_manager',
-                'cache_dir' => __DIR__ . '/../data/cache/panes',
+                'cache_dir' => __DIR__ . '/../../data/cache/panes',
                 'dir_level' => 1,
             ),
         ),
