@@ -34,15 +34,9 @@ class ManagerFactoryIntegrationTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        $config = $this->serviceLocator->get('Config');
-        if (isset($config['flower_pane_manager']['listener_aggregates'])) {
-            if (in_array('PaneFileListener', $config['flower_pane_manager']['listener_aggregates'])) {
-                $fileListener = $this->serviceLocator->get('PaneFileListener');
-                $fileListener->getFileService()->refresh();
-            }
-        }
         $this->manager->refresh('foo');
         $this->manager->refresh('bar');
+        $this->manager->refresh('demo');
     }
 
     public function testCanGetPaneManager()
@@ -65,12 +59,47 @@ class ManagerFactoryIntegrationTest extends \PHPUnit_Framework_TestCase
 
     public function testCanGetPaneInFile()
     {
-        $pane = $this->manager->get('foo');
+        $pane = $this->manager->get('demo');
         $this->assertInstanceOf('Flower\View\Pane\PaneClass\PaneInterface', $pane);
-        $res = $this->manager->render('foo');
-        $expected = '<!-- begin Renderer -->
-<div>
-</div>
+        echo $res = $this->manager->render('demo');
+        $expected =
+'<!-- begin Renderer -->
+<!-- start pane -->
+  <!-- start content CallbackRender -->
+  <div>
+  <div class="navcontain">
+  <!-- start content snipets/navbar -->
+  <!-- end content snipets/navbar -->
+  </div>
+  </div>
+  <!-- end content CallbackRender -->
+  <div class="row view">
+    <div id="docs-content" class="push_three nine columns">
+      <!-- start content header -->
+      <div>
+        <!-- var header is not found -->
+      </div>
+      <!-- end content header -->
+      <!-- start content content -->
+      <div>
+        <!-- var content is not found -->
+      </div>
+      <!-- end content content -->
+    </div>
+    <!-- start content sidebar -->
+    <div id="sidebar" class="span3 pull_nine">
+      <!-- var sidebar is not found -->
+    </div>
+    <!-- end content sidebar -->
+  </div>
+  <div id="footer" class="row">
+    <!-- start content footer -->
+    <div class="span12">
+      <!-- var footer is not found -->
+    </div>
+    <!-- end content footer -->
+  </div>
+<!-- end pane -->
 <!-- end Renderer -->
 ';
         $this->assertEquals(str_replace("\r\n", "\n", $expected), $res);

@@ -46,7 +46,7 @@ return array(
         'translation_files' => array(
             array(
                 'type' => 'phpArray',
-                'filename' => __DIR__ . '/../../vendor/zendframework/zendframework/resources/languages/ja/Zend_Validate.php',
+                'filename' => __DIR__ . '/../../../vendor/zendframework/zendframework/resources/languages/ja/Zend_Validate.php',
                 'text_domain' => 'default',
                 'locale' => 'ja_JP',
             ),
