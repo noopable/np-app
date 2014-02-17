@@ -61,7 +61,7 @@ class ManagerFactoryIntegrationTest extends \PHPUnit_Framework_TestCase
     {
         $pane = $this->manager->get('demo');
         $this->assertInstanceOf('Flower\View\Pane\PaneClass\PaneInterface', $pane);
-        echo $res = $this->manager->render('demo');
+        $res = $this->manager->render('demo');
         $expected =
 '<!-- begin Renderer -->
 <!-- start pane -->
@@ -87,14 +87,14 @@ class ManagerFactoryIntegrationTest extends \PHPUnit_Framework_TestCase
       <!-- end content content -->
     </div>
     <!-- start content sidebar -->
-    <div id="sidebar" class="span3 pull_nine">
+    <div id="sidebar" class="three columns pull_nine">
       <!-- var sidebar is not found -->
     </div>
     <!-- end content sidebar -->
   </div>
   <div id="footer" class="row">
     <!-- start content footer -->
-    <div class="span12">
+    <div class="twelve columns">
       <!-- var footer is not found -->
     </div>
     <!-- end content footer -->

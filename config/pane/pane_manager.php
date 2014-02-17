@@ -12,6 +12,7 @@ return array(
     'builder_options' => array(
         'builder_class' => 'Flower\View\Pane\Builder\Builder',
         'pane_class' => 'Flower\View\Pane\PaneClass\Pane',
+        'size_to_class_function' => array('Flower\View\Pane\Utils\Gumby', 'sizeToClass'),
     ),
     'renderer_class' => 'Flower\View\Pane\PaneRenderer',
     'listener_aggregates' => array(
