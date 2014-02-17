@@ -1,33 +1,35 @@
 <?php echo $this->render("snipets/ieconditional_html_open_tag.phtml"), PHP_EOL; ?>
 <head>
-<?php 
-echo $this->render("snipets/html5_compat_icon_hack"), PHP_EOL; 
+<?php
+echo $this->render("snipets/html5_compat_icon_hack"), PHP_EOL;
 $this->headLink(array(
     'rel' => 'shortcut icon',
     'type' => 'image/vnd.microsoft.icon',
     'href' => $this->basePath() . '/img/favicon.ico',
     ));
-//don't echo,only meta detection 
+//don't echo,only meta detection
 $this->render('snipets/detect-meta');
 if (!isset($headIndent)) {
     $headIndent = 4;
 }
 echo $this->headMeta()->toString($headIndent), PHP_EOL;
-echo $this->headTitle()->toString($headIndent), PHP_EOL; 
-echo $this->headScript()->toString($headIndent), PHP_EOL; 
+echo $this->headTitle()->toString($headIndent), PHP_EOL;
+echo $this->headScript()->toString($headIndent), PHP_EOL;
 echo $this->headLink()->toString($headIndent), PHP_EOL;
 ?>
 </head>
-<body<?php 
+<body<?php
 if (isset($ngBody)) echo ' ' . $ngBody;
 if (isset($name)) echo " class=\"$name\"";
 ?>>
 <?php //isset($navbar) and print($navbar);?>
-<?php 
+<?php
 /**
  * Content pane
  */
-echo $this->pane();
+if (isset($pane)) {
+    echo $this->npPaneManager()->render($pane);
+}
 ?>
 <?php
 /**

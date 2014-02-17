@@ -16,7 +16,7 @@ return array(
         'pageId' => 'top',
         'ogpImage' => 'notfound',
         'ogpType' => 'landing',
-        'pane' => include __DIR__ . '/pane/draft1.php',
+        'pane' => 'base/top',
         'ngBody' => 'ng-app="myApp"',
     ),
     'options' => array(//もしくはビルダーを実装する。
