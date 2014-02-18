@@ -14,9 +14,6 @@ return array(
             'pane_class' => 'Flower\View\Pane\PaneClass\ViewScriptPane',
             'classes' => 'navcontain',
             'var' => 'snipets/navbar/navbar',
-            'attributes' => array(
-                'ng-include' => '"_partials/dist/navbar.html"',
-            ),
         ),
         array(
             'classes' => array('row', 'view'),

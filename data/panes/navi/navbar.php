@@ -7,19 +7,27 @@
  */
 return array(
     'pane_class' => 'Flower\View\Pane\PaneClass\Anchor',
-    'tag' => 'ul',
+    'containerTag' => 'ul',
+    'wrapTag' => 'div',//自コンテンツがない場合は使われない。
+    'tag' => 'span',
+    'options' => array(
+        'container_attributes' => array(
+            'class' => 'eight columns',
+        ),
+    ),
     'size' => 8,
     'inner' => array(
         array(
             'label' => 'Demo',
             'href' => '#',
+            'containerBegin' => '<div class="dropdown"><ul>',
+            'containerEnd' => '</ul></div>',
         ),
         array(
             'label' => 'AngularDemo',
             'href' => '#',
-            'wrapBegin' => '<div class="dropdown">
-            <ul>',
-            'wrapEnd' => '</ul></div>',
+            'containerBegin' => '<div class="dropdown"><ul>',
+            'containerEnd' => '</ul></div>',
             'inner' => array(
                 array(
                     'label' => 'demo-dist',
@@ -34,9 +42,8 @@ return array(
         array(
             'label' => 'GumbyDemo',
             'href' => '#',
-            'wrapBegin' => '<div class="dropdown">
-            <ul>',
-            'wrapEnd' => '</ul></div>',
+            'containerBegin' => '<div class="dropdown"><ul>',
+            'containerEnd' => '</ul></div>',
             'inner' => array(
                 array(
                     'label' => '960 grid',
@@ -55,6 +62,8 @@ return array(
         array(
             'label' => 'Contact',
             'href' => '#',
+            'containerBegin' => '<div class="dropdown"><ul>',
+            'containerEnd' => '</ul></div>',
         ),
     ),
 );
