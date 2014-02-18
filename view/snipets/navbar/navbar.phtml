@@ -1,0 +1,13 @@
+<div class="pretty navbar fixed" id="nav4">
+    <div class="row">
+        <a class="toggle" gumby-trigger="#nav4 ul" href="#"><i class="icon-menu"></i></a>
+        <h1 class="four columns">
+            <a href="#">
+                <?php echo nl2br($this->escapeHtml("AngularJS on \nGumbyFramework")); ?>
+            </a>
+        </h1>
+        <?php
+        echo $this->npPaneManager()->render('navi/navbar');
+        ?>
+    </div>
+</div>

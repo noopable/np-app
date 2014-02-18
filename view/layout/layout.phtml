@@ -27,6 +27,7 @@ if (isset($name)) echo " class=\"$name\"";
 /**
  * Content pane
  */
+$navbar = $this->render('snipets/navbar/navbar');
 if (isset($pane)) {
     echo $this->npPaneManager()->render($pane);
 }
