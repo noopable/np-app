@@ -3,3 +3,4 @@
 menu/*
 pages/*
 !.gitignore
+panes/file/*.cache.php
