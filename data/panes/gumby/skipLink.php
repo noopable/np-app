@@ -19,12 +19,12 @@ return array(
         'pane_class' => 'Flower\View\Pane\PaneClass\EntityAnchor',
         'href' => '%s',
         'label' => '%s',
-        'class' => 'skip',
         'attributes' => array(
             'gumby-offset' => -100,
             'gumby-update' => null,
             'gumby-duration' => 600,
             'gumby-goto' => "[data-target='%s']",
+            'class' => 'skip',
         ),
         'options' => array(
             'attr_options' => array(
