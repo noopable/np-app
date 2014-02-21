@@ -1,4 +1,9 @@
 <?php
+if (!isset($collection)) {
+    echo "<!-- collection not found -->\n";
+    return;
+}
+
 $manager = $this->npPaneManager();
 $callback = function ($pane, $params = array()) {
     $pane->href = sprintf($pane->href, $params['href']);
@@ -7,19 +12,7 @@ $callback = function ($pane, $params = array()) {
     Flower\View\Pane\Factory\AnchorPaneFactory::parseBeginEnd($pane, $params);
 };
 $pane = $manager->get('gumby/skipLink');
-$array = array(
-    array(
-        'href' => '#c1',
-        'target' => 'c1',
-        'label' => 'c1-label',
-    ),
-    array(
-        'href' => '#c2',
-        'target' => 'c2',
-        'label' => 'c2-label',
-    ),
-);
-$collection = new Flower\View\Pane\Entity\ApplicatableCallbackCollection($callback, $array);
+$collection = new Flower\View\Pane\Entity\ApplicatableCallbackCollection($callback, $collection);
 $pane->setCollection($collection);
 echo '<nav id="sidebar-nav-holder" class="vertical-nav" gumby-pin="[data-target=\'icons\']">' . "\n";
 echo $manager->renderPane($pane);

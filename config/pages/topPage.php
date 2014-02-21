@@ -23,7 +23,34 @@ return array(
         'blockBuilder' => function ($b) {
             /* @var $b Page\Builder\BlockCallbackBuilder */
             $b->insert('set/base');
-            $b->insert('blocks/sidebar', array('foo' => 'bar'));
+            $b->insert('blocks/sidebar',
+                array(
+                    'properties' => array(
+                        'collection' => array(
+                            array(
+                                'href' => '#c1',
+                                'target' => 'c1',
+                                'label' => 'c1-label',
+                            ),
+                            array(
+                                'href' => '#c2',
+                                'target' => 'c2',
+                                'label' => 'c2-label',
+                            ),
+                            array(
+                                'href' => '#c3',
+                                'target' => 'c3',
+                                'label' => 'c3-label',
+                            ),
+                            array(
+                                'href' => '#c4',
+                                'target' => 'c4',
+                                'label' => 'c4-label',
+                            ),
+                        ),
+                    ),
+                )
+            );
             $b->block('content',
                  array(
                     'options' => array(
