@@ -28,7 +28,7 @@ return array(
         'blocks' => array(),
         'config_resolver' => array(
             'path_stack' => array(
-                'pages' => __DIR__ . '/pages',
+                'pages' => __DIR__ . '/../data/pages',
             ),
             'map' => array(
                 //'error/404'               => __DIR__ . '/../view/error/404.phtml',
