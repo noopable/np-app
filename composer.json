@@ -32,8 +32,9 @@
     ],
     "require": {
         "php": ">=5.4.10",
-        "noopable/page": "dev-master",
+        "zendframework/zendframework": "dev-master",
         "noopable/flower": "dev-master",
+        "noopable/page": "dev-master",
         "noopable/np-document": "dev-master"
     },
     "autoload": {
