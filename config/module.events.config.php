@@ -29,19 +29,19 @@ return array(
         ),
         'callbacks' => array(
             array(
-                'identifier' => 'pane_cache_config',
+                'identifier' => NpApp\Utils\RegistryEventManager\PaneEventDescriptor::IDENTIFIER_CONFIG,
                 'event' => Flower\View\Pane\PaneEvent::EVENT_REFRESH_CONFIG,
                 'callback' => 'PaneFileListener',
                 'callback_method' => 'onRefresh',
             ),
             array(
-                'identifier' => 'pane_cache_pane',
+                'identifier' => NpApp\Utils\RegistryEventManager\PaneEventDescriptor::IDENTIFIER_PANE,
                 'event' => Flower\View\Pane\PaneEvent::EVENT_REFRESH_PANE,
                 'callback' => 'PaneCacheListener',
                 'callback_method' => 'onRefresh',
             ),
             array(
-                'identifier' => 'pane_cache_render',
+                'identifier' => NpApp\Utils\RegistryEventManager\PaneEventDescriptor::IDENTIFIER_RENDER,
                 'event' => Flower\View\Pane\PaneEvent::EVENT_REFRESH_RENDER,
                 'callback' => 'PaneRenderCacheListener',
                 'callback_method' => 'onRefresh',
