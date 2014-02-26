@@ -3,4 +3,5 @@
 menu/*
 pages/*
 !.gitignore
-panes/file/*.cache.php
+panes/*
+!panes/file/.gitkeep
