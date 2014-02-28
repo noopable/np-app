@@ -12,9 +12,11 @@ return array(
             $basePath = $hm->get('basePath');
             $bodyScript = $hm->get('bodyScript');
             $headLink = $hm->get('headLink');
+            $css = include __DIR__ . '/../head/css.php';
+
             $headLink
-                ->appendStylesheet($basePath() . '/css/dist/demo-common.css') 
-                ->appendStylesheet($basePath() . '/css/dist/demo-1.css')
+                ->appendStylesheet($basePath() . $css['demo-common'])
+                ->appendStylesheet($basePath() . $css['demo-1'])
                 ;
             $b->insert('app/angular-lib');
             $b->insert('app/gumby-lib');
@@ -28,4 +30,3 @@ return array(
         },
     ),
 );
-                
