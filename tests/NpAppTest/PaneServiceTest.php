@@ -37,6 +37,8 @@ class ManagerFactoryIntegrationTest extends \PHPUnit_Framework_TestCase
         $this->manager->refresh('foo');
         $this->manager->refresh('bar');
         $this->manager->refresh('demo');
+        $this->manager->refresh('tile');
+        $this->manager->refresh('tile/my-tile-container');
     }
 
     public function testCanGetPaneManager()
@@ -59,17 +61,17 @@ class ManagerFactoryIntegrationTest extends \PHPUnit_Framework_TestCase
 
     public function testCanGetPaneInFile()
     {
-        $pane = $this->manager->get('demo');
+        $pane = $this->manager->get('tests/demo');
         $this->assertInstanceOf('Flower\View\Pane\PaneClass\PaneInterface', $pane);
-        $res = $this->manager->render('demo');
+        $res = $this->manager->render('tests/demo');
         $expected =
 '<!-- begin Renderer -->
 <!-- start pane -->
   <!-- start content CallbackRender -->
   <div>
   <div class="navcontain">
-  <!-- start content snipets/navbar -->
-  <!-- end content snipets/navbar -->
+  <!-- start content tests/nil -->
+  <!-- end content tests/nil -->
   </div>
   </div>
   <!-- end content CallbackRender -->
@@ -110,5 +112,56 @@ class ManagerFactoryIntegrationTest extends \PHPUnit_Framework_TestCase
         $eventManager = $this->manager->getEventManager();
         $listeners = $eventManager->getListeners(PaneEvent::EVENT_GET_PANE);
         $this->assertEquals(3, $listeners->count());
+    }
+
+    public function testPaneExtended()
+    {
+        $pane = $this->manager->get('tile/my-tile-container');
+        $array = array(
+            array('label' => 'foo', 'var' => 'foo'),
+            array('label' => 'bar'),
+            array('label' => 'baz'),
+        );
+        $collection = new \ArrayIterator($array);
+        $pane->setCollection($collection);
+        $expects = str_replace("\r\n", "\n", ''
+                . '<!-- begin Renderer -->
+<ul id="my-tile-container">
+  <!-- start content CallbackRender -->
+  <!-- start wrap pane -->
+  <li class="tile">
+  <!-- start content tests/entity -->
+array (
+  \'label\' => \'foo\',
+  \'var\' => \'foo\',
+)  <!-- end content tests/entity -->
+  </li>
+  <!-- end wrap pane -->
+  <!-- end content CallbackRender -->
+  <!-- start content CallbackRender -->
+  <!-- start wrap pane -->
+  <li class="tile">
+  <!-- start content tests/entity -->
+array (
+  \'label\' => \'bar\',
+)  <!-- end content tests/entity -->
+  </li>
+  <!-- end wrap pane -->
+  <!-- end content CallbackRender -->
+  <!-- start content CallbackRender -->
+  <!-- start wrap pane -->
+  <li class="tile">
+  <!-- start content tests/entity -->
+array (
+  \'label\' => \'baz\',
+)  <!-- end content tests/entity -->
+  </li>
+  <!-- end wrap pane -->
+  <!-- end content CallbackRender -->
+</ul>
+<!-- end Renderer -->
+');
+        $res = $this->manager->renderPane($pane);
+        $this->assertEquals($expects, $res);
     }
 }

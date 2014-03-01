@@ -6,7 +6,7 @@ return array(
         array(
             'pane_class' => 'Flower\View\Pane\PaneClass\ViewScriptPane',
             'classes' => 'navcontain',
-            'var' => 'snipets/navbar/navbar',
+            'var' => 'tests/nil',
         ),
         array(
             'classes' => array('row', 'view'),
