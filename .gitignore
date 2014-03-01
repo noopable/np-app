@@ -3,5 +3,6 @@ LICENSE.txt
 README.txt
 demos/
 extras/documentation
+composer.lock
 /vendor
 /nbproject/
