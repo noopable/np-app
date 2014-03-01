@@ -11,8 +11,8 @@ return array(
             $basePath = $hm->get('basePath');
             $bodyScript = $hm->get('bodyScript');
             $headLink = $hm->get('headLink');
-            
-            $headLink->prependStylesheet($basePath() . '/css/dist/gumby.css');
+            $css = include __DIR__ . '/../head/css.php';
+            $headLink->prependStylesheet($basePath() . $css['gumby']);
             $bodyScript
                 ->setAllowArbitraryAttributes(true)
                 ->prependFile($basePath() . '/js/libs/gumby/main.js')
