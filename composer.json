@@ -33,6 +33,7 @@
     "require": {
         "php": ">=5.4.10",
         "zendframework/zendframework": "dev-master",
+        "noopable/np-composer-installer": "dev-master",
         "noopable/flower": "dev-master",
         "noopable/page": "dev-master",
         "noopable/np-document": "dev-master"
