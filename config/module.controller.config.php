@@ -10,6 +10,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'NpApp\Controller\Index' => 'NpApp\Controller\IndexController',
+            'NpApp\Controller\Item' => 'NpApp\Controller\ItemController',
             'NpApp\Controller\Error' => 'NpApp\Controller\ErrorController',
             'not-found' => 'NpApp\Controller\NotFoundController',
             'StandardPageController'  => 'Flower\Stdlib\Page\Controller\StandardPageController',
