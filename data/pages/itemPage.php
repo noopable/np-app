@@ -3,20 +3,20 @@ return array(
     'class' => 'Page\Block\Page',
     //RouteMatchでコントローラーとアクションが指定されていないとき
     'default_controller' => 'page',
-    'default_action' => 'index',
+    'default_action' => 'show',
     'properties' => array(
         'charset' => 'utf-8',
-        'title' => 'トップページ',
+        'title' => 'アイテム',
         'description' => 'Sample of zf2 page,</head>',
         'keywords' => 'zf2,angularjs,gumby,skeleton',
         'author' => 'kosugi@kips.gr.jp',
-        'itemName' => 'sample top',
+        'itemName' => 'sample',
         'itemDescription' => 'sample contents',
         'itemImage' => 'notfound',
-        'pageId' => 'top',
+        'pageId' => 'item',
         'ogpImage' => 'notfound',
         'ogpType' => 'landing',
-        'pane' => 'base/top',
+        'pane' => 'base/item',
         'ngBody' => 'ng-app="myApp"',
     ),
     'options' => array(//もしくはビルダーを実装する。
@@ -54,7 +54,7 @@ return array(
             $b->block('content',
                  array(
                     'options' => array(
-                        'template'=>'np-app/index/index',
+                        'template'=>'np-app/item/show',
                         //'captureTo' => 'content',
                         'viewModelAppend' => true,
                     ),
