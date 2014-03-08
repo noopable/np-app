@@ -18,6 +18,7 @@ return array(
     'listener_aggregates' => array(
         'PaneFileListener',
         'PaneCacheListener',
-        'PaneRenderCacheListener',
+        //レンダリング結果をキャッシュできるものとできないものをrender時のオプションまたはPaneのオプションで与えられるようにしておくこと。
+        //'PaneRenderCacheListener',
     ),
 );
