@@ -8,7 +8,7 @@
 
 return array(
     // The following section is new and should be added to your file
-    'home' => array(
+    'npApp' => array(
         'type'    => 'Literal',
         'options' => array(
             'route'    => '/',
@@ -16,10 +16,14 @@ return array(
                 '__NAMESPACE__' => 'NpApp\Controller',
                 'page'   => 'topPage',
                 'controller'    => 'index',
-                'action'        => 'index',
+                'action'        => 'top',
             ),
         ),
         'may_terminate' => true,
+        'child_routes' => array(
+            'index' => include __DIR__ . '/index.php',
+            'item' => include __DIR__ . '/item.php',
+        ),
     ),
     'publish' => array(
         'type' => 'hostname',
