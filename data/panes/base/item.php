@@ -7,39 +7,28 @@
  */
 
 return array(
-    'classes' => array('container'),
-    'tag' => '',//ルートレベルのタグをキャンセル
     'inner' => array(
-        array(
-            'pane_class' => 'Flower\View\Pane\PaneClass\ViewScriptPane',
-            'classes' => 'navcontain',
-            'var' => 'snipets/navbar/navbar',
-        ),
         array(
             'classes' => array('row', 'view'),
             'inner' => array(
                 array(
+                    'pane_id' => 'docs_content',
                     'id' => 'docs-content',
-                    'classes' => array('push_three', 'nine', 'columns'),
+                    'size' => 9,
+                    'classes' => array('push_three'),
                     'inner' => array(
                         array('var' => 'header',),
                         array('var' => 'content',),
                     ),
                 ),
                 array(
+                    'pane_id' => 'sidebar',
                     'id' => 'sidebar',
                     'size' => 3,
-                    'classes' => array('pull_nine'/*, 'three', 'columns'*/),
+                    'classes' => array('pull_nine'),
                     'var' => 'sidebar',
+                    'order' => -100,
                 ),
-            ),
-        ),
-        array(
-            'id' => 'footer',
-            'classes' => 'row',
-            'inner' => array(
-                'size' => 12,
-                'var' => 'footer',
             ),
         ),
     ),
