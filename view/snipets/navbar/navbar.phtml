@@ -1,9 +1,18 @@
-<div class="pretty navbar fixed" id="nav4">
+<?php
+$navId = isset($navId) ? $this->escapeHtmlAttr($navId) : 'nav';
+if (!isset($siteData)) {
+    $siteData = array();
+}
+$siteLabel = isset($siteData['site_label']) ? $siteData['site_label'] : 'Demo Site';
+?>
+<div class="pretty navbar fixed" id="<?php echo $navId?>">
     <div class="row">
-        <a class="toggle" gumby-trigger="#nav4 ul" href="#"><i class="icon-menu"></i></a>
+        <a class="toggle" gumby-trigger="#<?php echo $navId?> ul" href="#"><i class="icon-menu"></i></a>
         <h1 class="four columns">
-            <a href="#">
-                <?php echo nl2br($this->escapeHtml("AngularJS on \nGumbyFramework")); ?>
+            <a href="<?php echo $this->basePath('/')?>">
+                <?php
+                echo nl2br($this->escapeHtml($siteLabel));
+                ?>
             </a>
         </h1>
         <?php

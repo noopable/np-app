@@ -38,7 +38,9 @@ return array(
                 //'viewModelAppend' => true,
             ],
             'properties' => array(
+                'navId' => 'nav4',
                 'collection' => include __DIR__ . '/../data/navbar.php',
+                'siteData' => include __DIR__ . '/../data/site.php',
             ),
             'order' => 100,
         ],
