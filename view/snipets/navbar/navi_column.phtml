@@ -1,0 +1,37 @@
+<?php
+
+/**
+ *
+ * @copyright Copyright (c) 2013-2014 KipsProduction (http://www.kips.gr.jp)
+ * @license   http://www.kips.gr.jp/newbsd/LICENSE.txt New BSD License
+ */
+if (!isset($entity)) {
+    echo 'entity not found' . __FILE__;
+} else {
+    $callback = function ($pane, $params = array()) {
+        isset($params['href']) &&
+        $pane->href = sprintf($pane->href, $params['href']);
+        isset($params['label']) &&
+        $pane->label = sprintf($pane->label, $params['label']);
+        Flower\View\Pane\Factory\AnchorPaneFactory::parseBeginEnd($pane, $params);
+    };
+    $paneManager = $this->npPaneManager();
+    $columnPane = $paneManager->get('navi/naviColumn');
+    $me = $columnPane->getPrototype();
+    $me->setEntity(new Flower\View\Pane\Entity\ApplicatableCallbackEntity($callback, $entity));
+    if ($me->hasContent()) {
+        $me->setContainerBegin('');
+        $me->setContainerEnd('');
+        $me->setWrapBegin('');
+        $me->setWrapEnd('');
+        echo $paneManager->renderPane($me, array('comment_enable' => false));
+    }
+
+    if (isset($entity['collection'])) {
+        $collection = new Flower\View\Pane\Entity\ApplicatableCallbackCollection($callback, $entity['collection']);
+        $columnPane->setCollection($collection);
+        echo $paneManager->renderPane($columnPane);
+    }
+}
+
+
