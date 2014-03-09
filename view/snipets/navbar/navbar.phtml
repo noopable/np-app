@@ -7,7 +7,15 @@
             </a>
         </h1>
         <?php
-        echo $this->npPaneManager()->render('navi/navbar');
+        if (!isset($collection)) {
+            echo 'collection not found';
+        } else {
+            $paneManager = $this->npPaneManager();
+            $pane = $paneManager->get('navi/naviContainer');
+            $collection = new ArrayIterator($collection);
+            $pane->setCollection($collection);
+            echo $paneManager->renderPane($pane);
+        }
         ?>
     </div>
 </div>

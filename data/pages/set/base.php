@@ -2,7 +2,7 @@
 return array(
     'class' => 'Page\Block\BlockArray',
     'blocks' => array(
-        'core' => array( 
+        'core' => array(
             'options' => array(
                 'viewModelBuilder' => array(
                     'policy' => 'delegate',
@@ -15,7 +15,7 @@ return array(
                 },
             ),
         ),
-        'modernizr' => array( 
+        'modernizr' => array(
             'options' => array(
                 'viewModelBuilder' => array(
                     'policy' => 'delegate',
@@ -30,6 +30,18 @@ return array(
                 },
             ),
         ),
+        'navbar' => [
+            'options' =>
+            [
+                'template'=>'snipets/navbar/navbar',
+                'captureTo' => 'navbar',
+                //'viewModelAppend' => true,
+            ],
+            'properties' => array(
+                'collection' => include __DIR__ . '/../data/navbar.php',
+            ),
+            'order' => 100,
+        ],
         'header' => [
             'options' =>
             [

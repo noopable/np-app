@@ -22,12 +22,10 @@ echo $this->headLink()->toString($headIndent), PHP_EOL;
 if (isset($ngBody)) echo ' ' . $ngBody;
 if (isset($name)) echo " class=\"$name\"";
 ?>>
-<?php //isset($navbar) and print($navbar);?>
 <?php
 /**
  * Content pane
  */
-$navbar = $this->render('snipets/navbar/navbar');
 if (isset($pane)) {
     echo $this->npPaneManager()->render($pane);
 }

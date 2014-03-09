@@ -11,9 +11,10 @@ return array(
     'tag' => '',//ルートレベルのタグをキャンセル
     'inner' => array(
         array(
-            'pane_class' => 'Flower\View\Pane\PaneClass\ViewScriptPane',
+            //'pane_class' => 'Flower\View\Pane\PaneClass\ViewScriptPane',
             'classes' => 'navcontain',
-            'var' => 'snipets/navbar/navbar',
+            'var' => 'navbar',
+            //'var' => 'snipets/navbar/navbar',
             'order' => 10000,
         ),
         array(
