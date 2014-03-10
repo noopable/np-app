@@ -11,7 +11,8 @@ return array(
                     $sl = $b->getService()->getServiceLocator();
                     $hm = $sl->get('ViewHelperManager');
                     $headTitle = $hm->get('headTitle');
-                    $headTitle('Zend Framework2, AngularJS, GumbyFramework Demo')->setSeparator(' - ')->setAutoEscape(false);
+                    $siteData = include __DIR__ . '/../data/site.php';
+                    $headTitle($siteData['title'])->setSeparator(' - ')->setAutoEscape(false);
                 },
             ),
         ),
