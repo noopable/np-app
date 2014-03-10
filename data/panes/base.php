@@ -11,20 +11,15 @@ return array(
     'tag' => '',//ルートレベルのタグをキャンセル
     'inner' => array(
         array(
-            //'pane_class' => 'Flower\View\Pane\PaneClass\ViewScriptPane',
             'classes' => 'navcontain',
             'var' => 'navbar',
-            //'var' => 'snipets/navbar/navbar',
             'order' => 10000,
         ),
         array(
             'id' => 'footer',
             'classes' => 'row',
             'order' => -10000,
-            'inner' => array(
-                'size' => 12,
-                'var' => 'footer',
-            ),
+            'var' => 'footer',
         ),
     ),
 );

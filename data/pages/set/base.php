@@ -1,4 +1,8 @@
 <?php
+//import config
+$siteData = include __DIR__ . '/../data/site.php';
+$navbar = include __DIR__ . '/../data/navbar.php';
+
 return array(
     'class' => 'Page\Block\BlockArray',
     'blocks' => array(
@@ -7,11 +11,10 @@ return array(
                 'viewModelBuilder' => array(
                     'policy' => 'delegate',
                 ),
-                'blockBuilder' => function ($b) {
+                'blockBuilder' => function ($b) use ($siteData) {
                     $sl = $b->getService()->getServiceLocator();
                     $hm = $sl->get('ViewHelperManager');
                     $headTitle = $hm->get('headTitle');
-                    $siteData = include __DIR__ . '/../data/site.php';
                     $headTitle($siteData['title'])->setSeparator(' - ')->setAutoEscape(false);
                 },
             ),
@@ -40,8 +43,8 @@ return array(
             ],
             'properties' => array(
                 'navId' => 'nav4',
-                'collection' => include __DIR__ . '/../data/navbar.php',
-                'siteData' => include __DIR__ . '/../data/site.php',
+                'collection' => $navbar,
+                'siteData' => $siteData,
             ),
             'order' => 100,
         ],
@@ -62,6 +65,9 @@ return array(
                 'template'=>'pages/widget/footer',
                 'captureTo' => 'footer',
                 //'viewModelAppend' => true,
+            ),
+            'properties' => array(
+                'siteData' => $siteData,
             ),
             'order' => 80,
         ],
