@@ -9,23 +9,25 @@
 return array(
     'inner' => array(
         array(
+            'classes' => array('row'),
+            'id' => 'header',
+            'var' => 'header',
+        ),
+        array(
             'classes' => array('row', 'view'),
             'inner' => array(
                 array(
-                    'pane_id' => 'docs_content',
-                    'id' => 'docs-content',
+                    'pane_id' => 'content',
+                    'id' => 'content',
                     'size' => 9,
-                    'classes' => array('push_three'),
-                    'inner' => array(
-                        array('var' => 'header',),
-                        array('var' => 'content',),
-                    ),
+                    //'classes' => array('push_three'),
+                    'var' => 'content',
                 ),
                 array(
                     'pane_id' => 'sidebar',
                     'id' => 'sidebar',
                     'size' => 3,
-                    'classes' => array('pull_nine'),
+                    //'classes' => array('pull_nine'),
                     'var' => 'sidebar',
                     'order' => -100,
                 ),
