@@ -19,9 +19,10 @@ return array(
             'pane_class' => 'Flower\View\Pane\PaneClass\Collection',
             'pane_id' => 'tiles',
             'containerTag' => 'ul',
-            'var' => 'foo',
-            'container_attributes' => array(
-                'id' => 'top-tile-container',
+            'options' => array(
+                'container_attributes' => array(
+                    'id' => 'top-tile-container',
+                ),
             ),
             'prototype' => array(
                 'pane_class' => 'Flower\View\Pane\PaneClass\EntityScriptPane',
