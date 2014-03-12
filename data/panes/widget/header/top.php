@@ -12,7 +12,7 @@ return array(
         array(
             'tag' => 'h2',
             'var' => 'header',
-            'size' => 8,
+            'size' => 7,
             'order' => 1,
         ),
         array(
@@ -22,6 +22,7 @@ return array(
             'options' => array(
                 'container_attributes' => array(
                     'id' => 'top-tile-container',
+                    'class' => 'five columns',
                 ),
             ),
             'prototype' => array(

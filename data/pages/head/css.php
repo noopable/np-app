@@ -11,4 +11,5 @@ return array(
     'demo-1' => '/css/dist/demo-1.css',
     'gumby' => '/css/dist/gumby.css',
     'wire-dev' => '/css/dist/wire.dev.css',
+    'fancytile' => '/css/dist/fancytile.css',
 );
