@@ -1,0 +1,10 @@
+<?php
+if (!isset($header)) {
+    $header = '<h2 class="pull-left"><a href="/">各ページのヘッダなどをページ属性によって変更するなど</a></h2>';
+}
+
+if (!isset($pane)) {
+    $pane = 'widget/header/header';
+}
+
+echo $this->npPaneManager()->render($pane);

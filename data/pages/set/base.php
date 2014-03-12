@@ -48,21 +48,10 @@ return array(
             ),
             'order' => 100,
         ],
-        'header' => [
-            'options' =>
-            [
-                'template'=>'pages/widget/header',
-                'captureTo' => 'header',
-                //'viewModelAppend' => true,
-            ],
-            'properties' => array(
-            ),
-            'order' => 100,
-        ],
         'footer' => [
             'class' => 'block',
             'options' => array(
-                'template'=>'pages/widget/footer',
+                'template'=>'pages/common/footer',
                 'captureTo' => 'footer',
                 //'viewModelAppend' => true,
             ),
