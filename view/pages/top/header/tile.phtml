@@ -1,0 +1,12 @@
+<?php
+
+/**
+ *
+ * @copyright Copyright (c) 2013-2014 KipsProduction (http://www.kips.gr.jp)
+ * @license   http://www.kips.gr.jp/newbsd/LICENSE.txt New BSD License
+ */
+
+//for example
+if (isset($entity) && is_array($entity) && isset($entity['label'])) {
+    echo $this->escapeHtml($entity['label']);
+}

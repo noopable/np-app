@@ -23,6 +23,7 @@ return array(
         'blockBuilder' => function ($b) {
             /* @var $b Page\Builder\BlockCallbackBuilder */
             $b->insert('set/base');
+            $b->insert('blocks/header');
             $b->insert('blocks/sidebar',
                 array(
                     'properties' => array(

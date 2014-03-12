@@ -1,0 +1,33 @@
+<?php
+if (!isset($header)) {
+    $header = '<h2 class="pull-left"><a href="/">トップページ</a></h2>';
+}
+
+if (!isset($pane)) {
+    $pane = 'widget/header/header';
+}
+
+$paneManager = $this->npPaneManager();
+if (is_string($pane)) {
+    $pane = $paneManager->get($pane);
+}
+
+
+if (! $pane instanceof Flower\View\Pane\PaneClass\PaneInterface) {
+    echo $header;
+    return;
+}
+
+$registry = $pane->getRegistry();
+if (isset($registry->tiles)) {
+    $tiles = $registry->tiles;
+    if ($tiles instanceof Flower\View\Pane\PaneClass\CollectionAwareInterface) {
+        if (isset($collection) && is_array($collection)) {
+            $collection = new ArrayIterator($collection);
+        }
+        //try?
+        $tiles->setCollection($collection);
+    }
+}
+
+echo $paneManager->renderPane($pane);

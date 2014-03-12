@@ -23,6 +23,24 @@ return array(
         'blockBuilder' => function ($b) {
             /* @var $b Page\Builder\BlockCallbackBuilder */
             $b->insert('set/base');
+            $b->insert('blocks/header',
+                array(
+                    'options' =>
+                    [
+                        'template'=>'pages/top/header/header',
+                        'captureTo' => 'header',
+                    ],
+                    'properties' => array(
+                        'pane' => 'widget/header/top',
+                        'collection' => array(
+                            array('label' => 'A'),
+                            array('label' => 'B'),
+                            array('label' => 'C'),
+                        ),
+                        'header' => 'top header',
+                    ),
+                )
+            );
             $b->insert('blocks/sidebar',
                 array(
                     'properties' => array(
