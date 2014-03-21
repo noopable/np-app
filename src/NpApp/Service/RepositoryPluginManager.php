@@ -9,14 +9,13 @@
 
 namespace NpApp\Service;
 
-use Flower\Model\Service\RepositoryPluginManager;
+use Flower\Model\Service\RepositoryPluginManager as AbstractRPM;
 
 /**
- * Description of RepositoryPluginManager
  *
  * @author tomoaki
  */
-class RepositoryPluginManager extends RepositoryPluginManager
+class RepositoryPluginManager extends AbstractRPM
 {
 
     /**
