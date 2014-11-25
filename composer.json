@@ -27,7 +27,7 @@
         },
         {
             "type": "git",
-            "url": "https://github.com/noopable/page.git"
+            "url": "https://github.com/noopable/np-page.git"
         }
     ],
     "require": {
@@ -35,7 +35,7 @@
         "zendframework/zendframework": "dev-master",
         "noopable/np-composer-installer": "dev-master",
         "noopable/flower": "dev-master",
-        "noopable/page": "dev-master",
+        "noopable/np-page": "dev-master",
         "noopable/np-document": "dev-master"
     },
     "autoload": {
