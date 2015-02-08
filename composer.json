@@ -15,11 +15,28 @@
     "repositories": [
         {
             "type": "git",
-            "url": "git@github.com/noopable/np-composer-installer.git"
+            "url": "https://github.com/noopable/np-composer-installer.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/noopable/Flower.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/noopable/np-document.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/noopable/np-page.git"
         }
     ],
     "require": {
-        "php": ">=5.4.10"
+        "php": ">=5.4.10",
+        "zendframework/zendframework": "dev-master",
+        "noopable/np-composer-installer": "dev-master",
+        "noopable/flower": "dev-master",
+        "noopable/np-page": "dev-master",
+        "noopable/np-document": "dev-master"
     },
     "autoload": {
         "psr-0": {
