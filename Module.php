@@ -1,7 +1,15 @@
 <?php
+/**
+ *
+ *
+ * @copyright Copyright (c) 2013-2014 KipsProduction (http://www.kips.gr.jp)
+ * @license   http://www.kips.gr.jp/newbsd/LICENSE.txt New BSD License
+ */
+
 namespace NpApp;
 
 use Zend\Mvc\MvcEvent;
+use Zend\Stdlib\ArrayUtils;
 
 class Module
 {
@@ -36,7 +44,9 @@ class Module
     public function getConfig()
     {
         $config =  include __DIR__ . '/config/module.config.php';
-        $config['router'] = include __DIR__ . '/config/router/routes.php';
+        foreach (glob(__DIR__ . '/config/module.*.php') as $file) {
+            $config = ArrayUtils::merge($config, include($file));
+        }
         return $config;
     }
 
