@@ -2,7 +2,7 @@
 namespace NpAppTest;
 /**
  * This file is copy from zf2/tutorial/album
- * 
+ *
  */
 use Zend\Loader\AutoloaderFactory;
 use Zend\Mvc\Service\ServiceManagerConfig;
@@ -27,14 +27,14 @@ class Bootstrap
             $testConfig = include __DIR__ . '/TestConfig.php.dist';
         }
 
-        if (isset($testConfig['module_listener_options']) 
+        if (isset($testConfig['module_listener_options'])
                 && isset($testConfig['module_listener_options']['module_paths'])) {
             $modulePathsConfig = $testConfig['module_listener_options']['module_paths'];
         }
         else {
             $modulePathsConfig = array('vendor', 'module');
         }
-        
+
         $zf2ModulePaths = array(dirname(dirname(__DIR__)));
         foreach ($modulePathsConfig as $moduleDirName) {
             if (($path = static::findParentPath($moduleDirName))) {
@@ -55,10 +55,10 @@ class Bootstrap
         );
 
         $config = ArrayUtils::merge($baseConfig, $testConfig);
-        
         $serviceManager = new ServiceManager(new ServiceManagerConfig());
         $serviceManager->setService('ApplicationConfig', $config);
         $serviceManager->get('ModuleManager')->loadModules();
+        $serviceManager->get('Application')->bootstrap();
         static::$serviceManager = $serviceManager;
     }
 
@@ -71,17 +71,29 @@ class Bootstrap
     {
         $vendorPath = static::findParentPath('vendor');
 
+        if (false === $vendorPath) {
+            // */noopable/__NAMESPACE__/tests
+            $vendorPath = dirname(dirname(dirname(__DIR__)));
+        }
         //we have composer autoloader?
         if (is_readable($vendorPath . '/autoload.php')) {
             $loader = require_once $vendorPath . '/autoload.php';
             error_log('composer loaded');
+        } else {
+            //for testing only but if this was installed with git submodule .hmm...
+            require_once(realpath(dirname(__DIR__) . '/Module.php'));
+        }
+
+        if (false === $vendorPath) {
+            // */noopable/__NAMESPACE__/tests
+            $vendorPath = dirname(dirname(dirname(__DIR__)));
         }
 
         if (! class_exists('Zend\Loader\StandardAutoloader')) {
             //try to load ZF2 autoload class
             if (! $zf2Path = getenv('ZF2_PATH')) {
                 if (defined('ZF2_PATH')) {
-                    $zf2Path = ZF2_PATH; 
+                    $zf2Path = ZF2_PATH;
                 }
                 elseif(is_dir($vendorPath . '/ZF2/library')) {
                     $zf2Path = $vendorPath . '/ZF2/library';
@@ -94,19 +106,21 @@ class Bootstrap
             if (!$zf2Path) {
                 throw new RuntimeException('Unable to load ZF2. Run `php composer.phar install` or define a ZF2_PATH environment variable.');
             }
-            
+
             if (isset($loader)) {
                 $loader->add('Zend\\', $zf2Path . '/Zend');
             } else {
                 require_once $zf2Path . '/Zend/Loader/AutoloaderFactory.php';
             }
-            
-            if (! class_exists('Zend\Loader\StandardAutoloader')) {
-                throw new RuntimeException('faild to load zf2 StandardAutoloader from ' . $zf2Path );
+
+            if (! class_exists('Zend\Loader\AutoloaderFactory')) {
+                throw new RuntimeException('faild to load zf2 AutoloaderFactory from ' . $zf2Path );
             }
 
         }
-        
+        //for testing only but if this was installed with git submodule .hmm...
+        require_once(realpath(dirname(__DIR__) . '/Module.php'));
+
         AutoloaderFactory::factory(array(
             'Zend\Loader\StandardAutoloader' => array(
                 'autoregister_zf' => true,
@@ -115,8 +129,6 @@ class Bootstrap
                 ),
             ),
         ));
-        
-
     }
 
     protected static function findParentPath($path)
@@ -129,6 +141,15 @@ class Bootstrap
             $previousDir = $dir;
         }
         return realpath($dir . '/' . $path);
+    }
+
+    public static function getTestRootDir()
+    {
+        static $dir;
+        if (! isset($dir)) {
+            $dir = __DIR__;
+        }
+        return $dir;
     }
 }
 
